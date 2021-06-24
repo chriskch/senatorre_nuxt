@@ -14,6 +14,20 @@
     >
       <!-- Slides with image only -->
       <b-carousel-slide
+        v-for="(slide, index) in slides"
+        :key="index"
+        :img-src="slide.bild"
+      >
+        <h1 class="animate__animated animate__flipInX animate__delay-1s mb-4">
+          Monumentum der <strong>Erinnerung!</strong>
+        </h1>
+        <nuxt-link
+          to=""
+          class="bg-brown text-white rounded-full px-3 py-3 text-lg font-bold"
+          >Mehr lesen</nuxt-link
+        >
+      </b-carousel-slide>
+      <b-carousel-slide
         img-src="https://senatorre.b-cdn.net/Start/Slides/bg1.jpg"
       >
         <h1 class="animate__animated animate__flipInX animate__delay-1s mb-4">
@@ -68,6 +82,12 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     }
+  },
+  beforeMount() {
+    const slides = this.$content("/start/Slider").fetch();
+    return {
+      slides
+    };
   }
 };
 </script>
