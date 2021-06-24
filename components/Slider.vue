@@ -1,8 +1,9 @@
 <template>
   <section>
+    <img src="content/uploads/bg2.jpg" alt="" />
     <b-carousel
       id="carousel"
-      v-model="slide"
+      v-model="slider"
       :interval="4000"
       img-width="1024"
       img-height="480"
@@ -13,65 +14,36 @@
       @sliding-end="onSlideEnd"
     >
       <!-- Slides with image only -->
-      <b-carousel-slide
+      <!-- <b-carousel-slide
         v-for="(slide, index) in slides"
         :key="index"
         :img-src="slide.bild"
       >
         <h1 class="animate__animated animate__flipInX animate__delay-1s mb-4">
-          Monumentum der <strong>Erinnerung!</strong>
+          {{ slide.caption }}
         </h1>
         <nuxt-link
-          to=""
+          :to="slide.link"
           class="bg-brown text-white rounded-full px-3 py-3 text-lg font-bold"
           >Mehr lesen</nuxt-link
         >
-      </b-carousel-slide>
-      <b-carousel-slide
-        img-src="https://senatorre.b-cdn.net/Start/Slides/bg1.jpg"
-      >
-        <h1 class="animate__animated animate__flipInX animate__delay-1s mb-4">
-          Monumentum der <strong>Erinnerung!</strong>
-        </h1>
-        <nuxt-link
-          to=""
-          class="bg-brown text-white rounded-full px-3 py-3 text-lg font-bold"
-          >Mehr lesen</nuxt-link
-        >
-      </b-carousel-slide>
-      <b-carousel-slide
-        img-src="https://senatorre.b-cdn.net/Start/Slides/bg2.jpg"
-      >
-        <h1 class="animate__animated animate__flipInX animate__delay-1s mb-4">
-          <strong>SenaTorre</strong> in Fessenbach
-        </h1>
-        <div class="animate__animated animate__bounceInLeft animate__delay-1s">
-          <router-link to="muensterturm#hero_in" class="btn btn-primary"
-            >Mehr lesen</router-link
-          >
-        </div>
-      </b-carousel-slide>
-      <b-carousel-slide
-        img-src="https://senatorre.b-cdn.net/Start/Slides/bg3.jpg"
-      >
-        <h1 class="animate__animated animate__flipInX animate__delay-1s mb-4">
-          <strong>Bau</strong> des Münsterturms
-        </h1>
-        <div class="animate__animated animate__bounceInRight animate__delay-1s">
-          <router-link to="muensterturm#hero_in" class="btn btn-primary"
-            >Mehr lesen</router-link
-          >
-        </div>
-      </b-carousel-slide>
+      </b-carousel-slide> -->
     </b-carousel>
   </section>
 </template>
 
 <script>
 export default {
+  async asyncData({ $content }) {
+    const slides = await this.$content("/start/Slider").fetch();
+    console.log(slides);
+    return {
+      slides
+    };
+  },
   data() {
     return {
-      slide: 0,
+      slider: 0,
       sliding: null
     };
   },
@@ -82,12 +54,6 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     }
-  },
-  beforeMount() {
-    const slides = this.$content("/start/Slider").fetch();
-    return {
-      slides
-    };
   }
 };
 </script>
