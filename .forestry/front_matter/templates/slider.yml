@@ -2,9 +2,20 @@
 label: Slider
 hide_body: true
 fields:
-- name: bilder
-  type: image_gallery
-  config: {}
-  label: Bilder
+- name: bild
+  type: file
+  config:
+    maxSize: 64
+  label: Bild
+- name: caption
+  type: text
+  config:
+    required: false
+  label: Caption
+- name: link
+  type: text
+  config:
+    required: false
+  label: Link
 pages:
 - assets/start/Slider.md
