@@ -1,4 +1,8 @@
 ---
 label: Slider
 hide_body: true
-fields: []
+fields:
+- name: bilder
+  type: image_gallery
+  config: {}
+  label: Bilder
