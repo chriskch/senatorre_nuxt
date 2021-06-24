@@ -1,6 +1,6 @@
 ---
 bild: images/bg2.jpg
-caption: Monumentum der Erinnerung!
+caption: Das ist ein Fucking Test
 link: ''
 
 ---
