@@ -1,5 +1,5 @@
 ---
-bild: content/uploads/bg2.jpg
+bild: images/bg2.jpg
 caption: Monumentum der Erinnerung!
 link: ''
 
