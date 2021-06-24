@@ -14,7 +14,7 @@
     >
       <!-- Slides with image only -->
       <b-carousel-slide
-        v-for="(slide, index) in content"
+        v-for="(slide, index) in slides"
         :key="index"
         :img-src="slide.bild"
       >
@@ -33,19 +33,17 @@
 
 <script>
 export default {
-  async asyncData({ $content }) {
-    const pages = await $content("Slider").fetch();
-
-    return {
-      pages
-    };
-  },
   data() {
     return {
       slider: 0,
-      sliding: null,
-      slides: null
+      sliding: null
     };
+  },
+  props: {
+    slides: {
+      type: Array,
+      required: true
+    }
   },
   methods: {
     onSlideStart(slide) {
@@ -54,11 +52,6 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     }
-  },
-  mounted() {
-    const content = this.$content("Slider").fetch();
-    this.slides = content;
-    console.log(content);
   }
 };
 </script>

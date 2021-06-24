@@ -1,12 +1,21 @@
 <template>
   <div>
     <Nav />
-    <Slider />
+    <Slider :slides="slides" />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  async fetch() {
+    this.slides = await this.$content("/start/Slider").fetch();
+  },
+  data() {
+    return {
+      slides: []
+    };
+  }
+};
 </script>
 
 <style></style>
