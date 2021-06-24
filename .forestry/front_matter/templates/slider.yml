@@ -17,3 +17,5 @@ fields:
   config:
     required: false
   label: Link
+pages:
+- assets/start/Slider/Slider 1.md
