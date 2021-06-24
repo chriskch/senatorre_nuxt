@@ -1,6 +1,5 @@
 <template>
   <section>
-    <img src="content/uploads/bg2.jpg" alt="" />
     <b-carousel
       id="carousel"
       v-model="slider"
@@ -14,8 +13,8 @@
       @sliding-end="onSlideEnd"
     >
       <!-- Slides with image only -->
-      <!-- <b-carousel-slide
-        v-for="(slide, index) in slides"
+      <b-carousel-slide
+        v-for="(slide, index) in content"
         :key="index"
         :img-src="slide.bild"
       >
@@ -27,7 +26,7 @@
           class="bg-brown text-white rounded-full px-3 py-3 text-lg font-bold"
           >Mehr lesen</nuxt-link
         >
-      </b-carousel-slide> -->
+      </b-carousel-slide>
     </b-carousel>
   </section>
 </template>
@@ -35,16 +34,17 @@
 <script>
 export default {
   async asyncData({ $content }) {
-    const slides = await this.$content("/start/Slider").fetch();
-    console.log(slides);
+    const pages = await $content("Slider").fetch();
+
     return {
-      slides
+      pages
     };
   },
   data() {
     return {
       slider: 0,
-      sliding: null
+      sliding: null,
+      slides: null
     };
   },
   methods: {
@@ -54,6 +54,11 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     }
+  },
+  mounted() {
+    const content = this.$content("Slider").fetch();
+    this.slides = content;
+    console.log(content);
   }
 };
 </script>
